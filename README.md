@@ -54,6 +54,7 @@ A API oferece os seguintes endpoints:
 
 - `POST /users`: Criar um novo usuário.
 - `PUT /users/:id`: Atualizar informações do usuário.
+- `GET /users/:id`: Retorna os dados do usuário de acordo com o id
 - `DELETE /users/:id`: Excluir um usuário.
 
   ```json
@@ -86,10 +87,16 @@ A API oferece os seguintes endpoints:
 
 Consulte a documentação dos endpoints para obter detalhes sobre os dados de entrada/saída.
 
-# Contribuindo
+# Entrega
 
-Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novos recursos. Abra uma _issue_ para discussões ou envie uma _pull request_.
+Para realizar a entrega, o cadidato deverá abrir um PR para a main com seu nome
 
-# Licença
+# Diferenciais
 
-Este projeto está licenciado sob a [MIT License](LICENSE).
+Serão considerados diferenciais, caso o candidato consiga aplicar as seguintes práticas:
+
+- Realizar o projeto em Typescript.
+- Programação Orientada a Objetos (POO).
+- Princípios SOLID
+- Testes (unitários e/ou de integração)
+
