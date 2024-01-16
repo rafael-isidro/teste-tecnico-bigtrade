@@ -76,12 +76,12 @@ A API oferece os seguintes endpoints:
 
   ```json
   {
-    "id": 21,
-    "title": "Latest updates, August 1st",
-    "content": "The whole text for the blog post goes here in this key",
-    "userId": 14, // Id do usuário que fez o post
-    "published": "2011-08-01T19:58:00.000Z",
-    "updated": "2011-08-01T19:58:51.947Z",
+    "id": 30,
+    "title": "Título da postagem",
+    "content": "Texto da postagem",
+    "userId": 1, // Id do usuário que fez o post
+    "published": "2021-08-01T20:01:00.000Z",
+    "updated": "2021-08-01T21:10:00.000Z",
   }
   ```
 
