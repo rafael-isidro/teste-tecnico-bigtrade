@@ -1,6 +1,6 @@
 # Node.js Blog CRUD Application
 
-Este é um projeto Node.js para criar um CRUD (Create, Read, Update, Delete) para uma aplicação de blog. O projeto utiliza MongoDB como banco de dados e inclui um Dockerfile e um docker-compose para facilitar a implantação e execução.
+Este é um projeto Node.js, podendo ser feito tanto em JavaScript ou TypeScript(diferencial) para criar um CRUD (Create, Read, Update, Delete) para uma aplicação de blog. O projeto utiliza MongoDB como banco de dados e inclui um Dockerfile e um docker-compose para facilitar a implantação e execução.
 
 ## Pré-requisitos
 
@@ -37,12 +37,12 @@ O aplicativo estará acessível em http://localhost:3000.
 
 # Estrutura do Projeto
 
-A estrutura do projeto é organizada da seguinte forma:
+A estrutura do projeto é organizada seguindo o padrão de arquitetura MVCS da seguinte forma:
 
 - **src/**: Contém o código-fonte da aplicação.
-  - **controllers/**: Controladores para lidar com as operações CRUD.
   - **models/**: Modelos de dados MongoDB.
-  - **routes/**: Rotas da aplicação.
+  - **services/**: Serviços que serão chamados na aplicação.
+  - **controllers/**: Controladores para lidar com as operações CRUD.
   - **index.js**: Ponto de entrada da aplicação.
 - **docker-compose.yml**: Arquivo de configuração do Docker Compose.
 
