@@ -87,7 +87,12 @@ A API oferece os seguintes endpoints:
 
 # Entrega
 
-Para realizar a entrega, o cadidato deverá abrir um PR para a main com seu nome
+Para realizar a entrega, o cadidato deverá abrir um PR para a main com seu nome.
+Exemplo: João das Couves
+
+```bash
+joao-das-couves
+```
 
 # Diferenciais
 
