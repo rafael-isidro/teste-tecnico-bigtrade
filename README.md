@@ -85,8 +85,6 @@ A API oferece os seguintes endpoints:
   }
   ```
 
-Consulte a documentação dos endpoints para obter detalhes sobre os dados de entrada/saída.
-
 # Entrega
 
 Para realizar a entrega, o cadidato deverá abrir um PR para a main com seu nome
