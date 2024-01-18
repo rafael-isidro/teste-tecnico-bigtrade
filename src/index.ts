@@ -1,17 +1,23 @@
 import express from "express";
+import mongoose from "mongoose";
 import "dotenv/config";
 
-const app = express();
 
-app.use(express.json());
-app.get("/", (req, res) => {
-  return res.send("API working");
-});
+mongoose
+  .connect(`${process.env.DB_URI}`)
+  .then(() => {
+    console.log("Database connected");
 
-const PORT = process.env.PORT || 3000;
+    const app = express();
+    const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () =>
-  console.log(`Server is running on PORT: ${PORT}`)
-);
+    app.use(express.json());
+    app.get("/", (req, res) => {
+      return res.send("API working");
+    });
 
-export default server;
+    app.listen(PORT, () => console.log(`Server is running on PORT: ${PORT}`));
+  })
+  .catch((error) => {
+    console.log(error);
+  });

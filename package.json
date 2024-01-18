@@ -2,16 +2,18 @@
   "name": "teste-tecnico-bigtrade",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node ./dist/index.js",
+    "build": "rm -rf dist && tsc -p .",
     "dev": "nodemon --exec ts-node ./src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^8.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
