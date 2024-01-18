@@ -93,6 +93,8 @@ Exemplo: João das Couves
 ```bash
 joao-das-couves
 ```
+Em caso de dúvidas, siga o link abaixo:
+- [How to create a pull request in GitHub](https://opensource.com/article/19/7/create-pull-request-github)
 
 # Diferenciais
 
