@@ -6,7 +6,7 @@ services:
     container_name: bigtrade_mongo_db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - ./data/mongodb:/data/db
     ports:
@@ -19,8 +19,12 @@ services:
     platform: linux/x86_64
     depends_on:
       - mongodb
-    env_file:
-      - .env
+    environment:
+      - MONGO_USERNAME=root
+      - MONGO_PASSWORD=example
+      - MONGO_HOSTNAME=mongodb
+      - MONGO_PORT=27017
+      - MONGO_DB=mydatabase
 
 volumes:
   mongodb_data_container:
