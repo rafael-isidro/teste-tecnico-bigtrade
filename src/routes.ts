@@ -1,11 +1,17 @@
 import { Router } from "express";
 import { Request, Response } from "express";
-
+import { UserController } from "./controllers/userController";
+import { VerifyUserFields } from "./middlewares/userMiddleware";
 
 const routes = Router();
+const verifyUserFields = new VerifyUserFields();
+const userController = new UserController();
 
-routes.get("/user", (req: Request, res: Response) => {
-    return res.status(200).json({ message: "/user route" });
-});
+routes.post(
+  "/users",
+  verifyUserFields.verifyRequiredFields,
+  verifyUserFields.verifyEmailExists,
+  userController.createUserController,
+);
 
 export default routes;
