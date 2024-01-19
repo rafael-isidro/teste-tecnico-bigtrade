@@ -25,16 +25,12 @@ export class UserController {
       const { id } = req.params;
       const userService = new UserService();
 
-      const userUpdated = await userService.updateUserService(
+      await userService.updateUserService(
         displayName,
         email,
         password,
         Number(id)
       );
-
-      if (!userUpdated) {
-        return res.status(400).json({ message: "User not found" });
-      }
 
       return res.status(204).json();
     } catch (error) {
@@ -48,9 +44,14 @@ export class UserController {
       const userService = new UserService();
 
       const user = await userService.getUserService(Number(id));
-      if (!user) return res.status(404).json({ message: "User not Found" });
 
-      return res.status(200).json(user);
+      if (!user) {
+        return res.status(404).json({ message: "User not Found." })
+      }
+      
+      const userFound =  { userId: user.userId, displayName: user.displayName, email: user.email, password: user.password };
+      
+      return res.status(200).json(userFound);
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error." });
     }
@@ -62,7 +63,6 @@ export class UserController {
       const userService = new UserService();
 
       const user = await userService.deleteUserService(Number(id));
-      if (!user) return res.status(404).json({ message: "User not Found" });
 
       return res.status(200).json(user);
     } catch (error) {

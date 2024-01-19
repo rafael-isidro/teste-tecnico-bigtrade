@@ -1,5 +1,5 @@
-import { resolve } from "path";
 import User from "../models/User";
+import Post from "../models/Post";
 
 export class UserService {
   async createUserService(
@@ -7,8 +7,10 @@ export class UserService {
     email: String,
     password: String
   ) {
+
     const lastUser = await User.findOne({}, {}, { sort: { userId: -1 } });
-    const nextUserId = lastUser ? lastUser.userId + 1 : 1;
+
+    const nextUserId = getNextUserId();
 
     const newUser = await User.create({
       userId: nextUserId,
@@ -18,6 +20,10 @@ export class UserService {
     });
 
     return newUser;
+
+    function getNextUserId() {
+      return lastUser ? Number(lastUser.userId) + 1 : 1;
+    }
   }
 
   async updateUserService(
@@ -49,6 +55,8 @@ export class UserService {
 
   async deleteUserService(userId: number) {
     const userFound = await User.findOneAndDelete({ userId });
+
+    await Post.deleteMany({ userId });
 
     return userFound;
   }
