@@ -60,6 +60,6 @@ routes.delete(
   "/posts/:id",
   verifyPostFields.verifyPostId,
   postController.deletePostController
-)
+);
 
 export default routes;

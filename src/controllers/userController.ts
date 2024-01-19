@@ -33,7 +33,7 @@ export class UserController {
       );
 
       if (!updatedUser) {
-        return res.status(404).json({ message: "User Not Found." })
+        return res.status(404).json({ message: "User Not Found." });
       }
 
       return res.status(204).json();
@@ -74,7 +74,7 @@ export class UserController {
       const user = await userService.deleteUserService(Number(id));
 
       if (user) {
-        return res.status(404).json({ message: "Post Not Found." })
+        return res.status(404).json({ message: "Post Not Found." });
       }
 
       return res.status(200).json(user);

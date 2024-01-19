@@ -27,7 +27,7 @@ export class PostService {
       user_Id: userId,
       published,
     });
-    
+
     return newPost;
 
     function getNextPostId() {
@@ -53,12 +53,11 @@ export class PostService {
     userId: number,
     postId: number
   ): Promise<IPost | null> {
-
     const foundPost = await Post.findOne({ postId });
 
     if (!foundPost) return null;
     const { published } = foundPost;
-    
+
     const updated = new Date().toISOString();
     const updatedPost = await Post.findOneAndUpdate(
       { postId },
@@ -67,7 +66,7 @@ export class PostService {
         content,
         userId,
         published,
-        updated
+        updated,
       }
     );
 

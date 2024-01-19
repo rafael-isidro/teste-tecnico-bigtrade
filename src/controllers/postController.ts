@@ -49,15 +49,19 @@ export class PostController {
 
   async updatePostController(req: Request, res: Response) {
     try {
-      
       const { title, content, userId } = req.body;
       const { id } = req.params;
       const postService = new PostService();
-      
-      const updatedPost = await postService.updatePostService(title, content, userId, Number(id));
+
+      const updatedPost = await postService.updatePostService(
+        title,
+        content,
+        userId,
+        Number(id)
+      );
 
       if (!updatedPost) {
-        return res.status(404).json({ message: "Post Not Found." })
+        return res.status(404).json({ message: "Post Not Found." });
       }
 
       return res.status(204).json();
@@ -74,10 +78,9 @@ export class PostController {
       const deletedPost = await postService.deletePostService(Number(id));
 
       if (!deletedPost) {
-        return res.status(404).json({ message: "Post Not Found." })
+        return res.status(404).json({ message: "Post Not Found." });
       }
       return res.status(200).json(deletedPost);
-
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error." });
     }
