@@ -42,10 +42,18 @@ routes.post(
   verifyPostFields.verifyPostRequiredFields,
   postController.createPostController
 );
-routes.get("/posts", 
-postController.getPostsController);
+routes.get("/posts", postController.getPostsController);
 
-routes.get("/posts/:id",
-verifyPostFields.verifyPostId,
-postController.getPostController)
+routes.get(
+  "/posts/:id",
+  verifyPostFields.verifyPostId,
+  postController.getPostController
+);
+routes.put(
+  "/posts/:id",
+  verifyPostFields.verifyPostUserId,
+  verifyPostFields.verifyPostRequiredFields,
+  postController.updatePostController
+);
+
 export default routes;

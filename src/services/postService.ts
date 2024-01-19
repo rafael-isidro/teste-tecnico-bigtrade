@@ -36,8 +36,8 @@ export class PostService {
   }
 
   async getPostsService(): Promise<IPost[]> {
-    const posts = await Post.find({}, {__v: 0});
-    
+    const posts = await Post.find({}, { __v: 0 });
+
     return posts;
   }
 
@@ -45,5 +45,35 @@ export class PostService {
     const post = await Post.findOne({ postId: Number(id) });
 
     return post;
+  }
+
+  async updatePostService(
+    title: String,
+    content: String,
+    userId: number,
+    postId: number
+  ): Promise<IPost | null> {
+
+    const foundPost = await Post.findOne({ postId });
+
+    if (!foundPost) return null;
+    const { published } = foundPost;
+    
+    const updated = new Date().toISOString();
+    const updatedPost = await Post.findOneAndUpdate(
+      { postId },
+      {
+        title,
+        content,
+        userId,
+        published,
+        updated
+      }
+    );
+
+    if (updatedPost) {
+      return updatedPost;
+    }
+    return null;
   }
 }

@@ -40,8 +40,27 @@ export class PostController {
       const post = await postService.getPostService(Number(id));
 
       if (!post) return res.status(404).json({ message: "Post not Fount." });
-      
+
       return res.status(200).json(post);
+    } catch (error) {
+      return res.status(500).json({ message: "Internal Server Error." });
+    }
+  }
+
+  async updatePostController(req: Request, res: Response) {
+    try {
+      
+      const { title, content, userId } = req.body;
+      const { id } = req.params;
+      const postService = new PostService();
+      
+      const updatedPost = await postService.updatePostService(title, content, userId, Number(id));
+
+      if (!updatedPost) {
+        return res.status(404).json({ message: "Post Not Found." })
+      }
+
+      return res.status(204).json();
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error." });
     }

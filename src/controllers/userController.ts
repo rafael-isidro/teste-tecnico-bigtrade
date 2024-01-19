@@ -25,12 +25,16 @@ export class UserController {
       const { id } = req.params;
       const userService = new UserService();
 
-      await userService.updateUserService(
+      const updatedUser = await userService.updateUserService(
         displayName,
         email,
         password,
         Number(id)
       );
+
+      if (!updatedUser) {
+        return res.status(404).json({ message: "User Not Found." })
+      }
 
       return res.status(204).json();
     } catch (error) {

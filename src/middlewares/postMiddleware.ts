@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { CreatePostParams } from "../services/protocols";
 import User from "../models/User";
+import Post from "../models/Post";
 
 export class VerifyPostFields {
   async verifyPostUserId(req: Request, res: Response, next: NextFunction) {
@@ -51,6 +52,11 @@ export class VerifyPostFields {
       const { id } = req.params;
       if (!id) {
         return res.status(400).json({ message: "Missing or Invalid Id." });
+      }
+
+      const postFound = Post.findOne({ postId: Number(id) });
+      if (!postFound) {
+        return res.status(400).json({ message: "Post Not Found." });
       }
 
       next();
