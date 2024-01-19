@@ -42,4 +42,7 @@ routes.post(
   verifyPostFields.verifyPostRequiredFields,
   postController.createPostController
 );
+routes.get("/posts", 
+postController.getPostsController);
+
 export default routes;

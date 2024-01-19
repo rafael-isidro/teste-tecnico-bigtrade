@@ -2,7 +2,7 @@ import Post, { IPost } from "../models/Post";
 import User from "../models/User";
 
 export class PostService {
-  public async createPostService(
+  async createPostService(
     title: string,
     content: string,
     userId: number
@@ -33,5 +33,11 @@ export class PostService {
     function getNextPostId() {
       return lastPost ? Number(lastPost.postId) + 1 : 1;
     }
+  }
+
+  async getPostsService(): Promise<IPost[]> {
+    const posts = await Post.find({});
+
+    return posts;
   }
 }

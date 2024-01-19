@@ -18,8 +18,7 @@ export class VerifyPostFields {
 
       next();
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Internal Server Error." });
+      return res.status(500).json({ message: "Internal Server Error." });
     }
   }
 
@@ -43,7 +42,7 @@ export class VerifyPostFields {
 
       next();
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error." });
+      return res.status(500).json({ message: "Internal Server Error." });
     }
   }
 }
