@@ -25,4 +25,9 @@ routes.get(
   userController.getUserController
 );
 
+routes.delete(
+  "/users/:id",
+  userController.deleteUserController
+);
+
 export default routes;

@@ -46,4 +46,10 @@ export class UserService {
 
     return userFound;
   }
+
+  async deleteUserService(userId: number) {
+    const userFound = await User.findOneAndDelete({ userId });
+
+    return userFound;
+  }
 }

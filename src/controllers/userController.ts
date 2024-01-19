@@ -18,6 +18,7 @@ export class UserController {
       return res.status(500).json({ message: "Internal Server Error." });
     }
   }
+
   async updateUserController(req: Request, res: Response) {
     try {
       const { displayName, email, password } = req.body;
@@ -40,13 +41,28 @@ export class UserController {
       return res.status(500).json({ message: "Internal Server Error." });
     }
   }
+
   async getUserController(req: Request, res: Response) {
     try {
       const { id } = req.params;
       const userService = new UserService();
 
       const user = await userService.getUserService(Number(id));
-      if (!user) return res.status(404).json({ message: "User not Found"});
+      if (!user) return res.status(404).json({ message: "User not Found" });
+
+      return res.status(200).json(user);
+    } catch (error) {
+      return res.status(500).json({ message: "Internal Server Error." });
+    }
+  }
+
+  async deleteUserController(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const userService = new UserService();
+
+      const user = await userService.deleteUserService(Number(id));
+      if (!user) return res.status(404).json({ message: "User not Found" });
 
       return res.status(200).json(user);
     } catch (error) {
