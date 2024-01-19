@@ -36,8 +36,14 @@ export class PostService {
   }
 
   async getPostsService(): Promise<IPost[]> {
-    const posts = await Post.find({});
-
+    const posts = await Post.find({}, {__v: 0});
+    
     return posts;
+  }
+
+  async getPostService(id: number): Promise<IPost | null> {
+    const post = await Post.findOne({ postId: Number(id) });
+
+    return post;
   }
 }

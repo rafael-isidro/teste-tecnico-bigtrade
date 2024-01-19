@@ -23,9 +23,25 @@ export class PostController {
       const postService = new PostService();
       const posts = await postService.getPostsService();
 
-      if(posts.length === 0) return res.status(200).json({ message: "No Posts Found." })
+      if (posts.length === 0)
+        return res.status(200).json({ message: "No Posts Found." });
 
       return res.status(200).json(posts);
+    } catch (error) {
+      return res.status(500).json({ message: "Internal Server Error." });
+    }
+  }
+
+  async getPostController(req: Request, res: Response) {
+    try {
+      const postService = new PostService();
+      const { id } = req.params;
+
+      const post = await postService.getPostService(Number(id));
+
+      if (!post) return res.status(404).json({ message: "Post not Fount." });
+      
+      return res.status(200).json(post);
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error." });
     }

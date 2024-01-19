@@ -45,4 +45,17 @@ export class VerifyPostFields {
       return res.status(500).json({ message: "Internal Server Error." });
     }
   }
+
+  async verifyPostId(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ message: "Missing or Invalid Id." });
+      }
+
+      next();
+    } catch (error) {
+      return res.status(500).json({ message: "Internal Server Error." });
+    }
+  }
 }

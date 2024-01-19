@@ -45,4 +45,7 @@ routes.post(
 routes.get("/posts", 
 postController.getPostsController);
 
+routes.get("/posts/:id",
+verifyPostFields.verifyPostId,
+postController.getPostController)
 export default routes;
