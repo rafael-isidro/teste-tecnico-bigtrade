@@ -41,5 +41,5 @@ routes.post(
   verifyPostFields.verifyPostUserId,
   verifyPostFields.verifyPostRequiredFields,
   postController.createPostController
-)
+);
 export default routes;

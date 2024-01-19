@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import routes from "./routes";
 
-
 mongoose
   .connect(`${process.env.DB_URI}`)
   .then(() => {
@@ -20,4 +19,3 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
- 

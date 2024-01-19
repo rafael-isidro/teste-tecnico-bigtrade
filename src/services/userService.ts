@@ -7,7 +7,6 @@ export class UserService {
     email: String,
     password: String
   ) {
-
     const lastUser = await User.findOne({}, {}, { sort: { userId: -1 } });
 
     const nextUserId = getNextUserId();

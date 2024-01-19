@@ -1,7 +1,7 @@
-import mongoose, { Document, Schema, Types } from 'mongoose';
+import mongoose, { Document, Schema, Types } from "mongoose";
 
 export interface IPost extends Document {
-  postId: number,
+  postId: number;
   title: string;
   content: string;
   user_Id: number;
@@ -18,4 +18,4 @@ const PostSchema: Schema = new Schema({
   updated: { type: String },
 });
 
-export default mongoose.model<IPost>('Post', PostSchema);
+export default mongoose.model<IPost>("Post", PostSchema);

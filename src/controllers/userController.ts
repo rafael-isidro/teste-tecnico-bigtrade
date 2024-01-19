@@ -46,11 +46,16 @@ export class UserController {
       const user = await userService.getUserService(Number(id));
 
       if (!user) {
-        return res.status(404).json({ message: "User not Found." })
+        return res.status(404).json({ message: "User not Found." });
       }
-      
-      const userFound =  { userId: user.userId, displayName: user.displayName, email: user.email, password: user.password };
-      
+
+      const userFound = {
+        userId: user.userId,
+        displayName: user.displayName,
+        email: user.email,
+        password: user.password,
+      };
+
       return res.status(200).json(userFound);
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error." });
