@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import User from "../models/User";
 
 export class UserService {
@@ -42,6 +43,7 @@ export class UserService {
 
   async getUserService(userId: number) {
     const userFound = await User.findOne({ userId });
+
     return userFound;
   }
 }
