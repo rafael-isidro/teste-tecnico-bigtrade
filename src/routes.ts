@@ -52,8 +52,14 @@ routes.get(
 routes.put(
   "/posts/:id",
   verifyPostFields.verifyPostUserId,
+  verifyPostFields.verifyPostId,
   verifyPostFields.verifyPostRequiredFields,
   postController.updatePostController
 );
+routes.delete(
+  "/posts/:id",
+  verifyPostFields.verifyPostId,
+  postController.deletePostController
+)
 
 export default routes;

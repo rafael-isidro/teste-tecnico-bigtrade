@@ -7,7 +7,7 @@ export class UserController {
       const { displayName, email, password } = req.body;
       const userService = new UserService();
 
-      const newUser = userService.createUserService(
+      const newUser = await userService.createUserService(
         displayName,
         email,
         password
@@ -72,6 +72,10 @@ export class UserController {
       const userService = new UserService();
 
       const user = await userService.deleteUserService(Number(id));
+
+      if (user) {
+        return res.status(404).json({ message: "Post Not Found." })
+      }
 
       return res.status(200).json(user);
     } catch (error) {

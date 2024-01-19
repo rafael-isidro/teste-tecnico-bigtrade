@@ -27,7 +27,7 @@ export class PostService {
       user_Id: userId,
       published,
     });
-
+    
     return newPost;
 
     function getNextPostId() {
@@ -75,5 +75,11 @@ export class PostService {
       return updatedPost;
     }
     return null;
+  }
+
+  async deletePostService(postId: number) {
+    const deletedPost = await Post.findOneAndDelete({ postId });
+
+    return deletedPost;
   }
 }
