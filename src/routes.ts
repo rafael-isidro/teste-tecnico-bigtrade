@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { Request, Response } from "express";
 import { UserController } from "./controllers/userController";
 import { VerifyUserFields } from "./middlewares/userMiddleware";
 
@@ -19,7 +18,11 @@ routes.put(
   verifyUserFields.verifyRequiredFields,
   verifyUserFields.verifyEmail,
   userController.updateUserController
+);
 
+routes.get(
+  "/users/:id",
+  userController.getUserController
 );
 
 export default routes;
