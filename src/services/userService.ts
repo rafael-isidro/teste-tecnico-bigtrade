@@ -1,16 +1,27 @@
-import { Request, Response } from "express";
 import User from "../models/User";
 
 export class UserService {
-  async createUserService (displayName: String, email: String, password: String) {
-    try {
-      const newUser = await User.create({
-        displayName,
-        email,
-        password,
-      });
+  async createUserService(displayName: String, email: String, password: String) {
+    const lastUser = await User.findOne({}, {}, { sort: { 'userId': -1 } });
+    const nextUserId = lastUser ? lastUser.userId + 1 : 1;
 
-      return newUser;
-    } catch (error) {}
+    const newUser = await User.create({
+      userId: nextUserId,
+      displayName,
+      email: email.toLowerCase().trim(),
+      password,
+    });
+
+    return newUser;
+  }
+  async updateUserService(displayName: String, email: String, password: String, userId: number) {
+    await User.updateOne(
+      { userId },
+      {
+        displayName,
+        email: email.toLowerCase().trim(),
+        password,
+      }
+    );
   }
 }

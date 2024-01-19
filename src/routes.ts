@@ -10,8 +10,16 @@ const userController = new UserController();
 routes.post(
   "/users",
   verifyUserFields.verifyRequiredFields,
-  verifyUserFields.verifyEmailExists,
-  userController.createUserController,
+  verifyUserFields.verifyEmail,
+  userController.createUserController
+);
+
+routes.put(
+  "/users/:id",
+  verifyUserFields.verifyRequiredFields,
+  verifyUserFields.verifyEmail,
+  userController.updateUserController
+
 );
 
 export default routes;

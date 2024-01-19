@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/User";
 import { CreateUserParams } from "../services/protocols";
+import validator from "validator";
+import User from "../models/User";
 
 export class VerifyUserFields {
   async verifyRequiredFields(req: Request, res: Response, next: NextFunction) {
@@ -19,15 +20,34 @@ export class VerifyUserFields {
     next();
   }
 
-  async verifyEmailExists(req: Request, res: Response, next: NextFunction) {
+  async verifyEmail(req: Request, res: Response, next: NextFunction) {
     const { email } = req.body;
+    const { id } = req.params;
 
-    const existUserEmail = await User.findOne({ email });
+    const isValidEmail = validator.isEmail(email.toLowerCase().trim());
 
-    if (existUserEmail) {
+    if (!isValidEmail) {
+      return res.status(400).json({ message: "Invalid Email." });
+    }
+
+    const existUserEmail = await User.findOne({ email: email.toLowerCase() });
+
+    if (existUserEmail && !id) {
+      return res.status(400).json({ message: "Invalid Email." });
+    }
+
+    if (existUserEmail && existUserEmail.email === email && existUserEmail.userId !== Number(id)) {
       return res.status(400).json({ message: "Invalid Email." });
     }
 
     next();
-  };
+  }
+  async verifyId(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ message: "Missing or Invalid Id." });
+    }
+
+    next();
+  }
 }
